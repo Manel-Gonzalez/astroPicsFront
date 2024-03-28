@@ -10,32 +10,32 @@ if (!Astro.cookies.has("token")) {
 
 <div>
   <div
-    class="flex flex-row justify-between w-full bg-white p-4 shadow-md focus:shadow-neutral-600 shadow-neutral-400"
+    class="flex flex-row flex-wrap w-full bg-white p-4 shadow-md focus:shadow-neutral-600 shadow-neutral-400"
   >
-    <h1>{title}</h1>
+    <h1 class="w-fit font-sans font-bold text-2xl m-4">{title}</h1>
     {
       cookie ? (
-        <div class="">
+        <div class="flex flex-row flex-wrap gap-2 ">
           <a
-            class="text-center shadow-md m-2 border focus:shadow-inner focus:shadow-neutral-600 border-neutral-400/50 shadow-neutral-400 hover:shadow-inner hover:shadow-neutral-500/80 w-fit rounded-lg p-2"
+            class="text-center shadow-md border focus:shadow-inner focus:shadow-neutral-600 border-neutral-400/50 shadow-neutral-400 hover:shadow-inner hover:shadow-neutral-500/80 w-fit rounded-lg p-2"
             href="/"
           >
             Inici
           </a>
           <a
-            class="text-center shadow-md m-2 border focus:shadow-inner focus:shadow-neutral-600 border-neutral-400/50 shadow-neutral-400 hover:shadow-inner hover:shadow-neutral-500/80 w-fit rounded-lg p-2"
+            class="text-center shadow-md border focus:shadow-inner focus:shadow-neutral-600 border-neutral-400/50 shadow-neutral-400 hover:shadow-inner hover:shadow-neutral-500/80 w-fit rounded-lg p-2"
             href="/upload"
           >
             Afegir foto
           </a>
           <a
-            class="text-center shadow-md m-2 border focus:shadow-inner focus:shadow-neutral-600 border-neutral-400/50 shadow-neutral-400 hover:shadow-inner hover:shadow-neutral-500/80 w-fit rounded-lg p-2"
+            class="text-center shadow-md border focus:shadow-inner focus:shadow-neutral-600 border-neutral-400/50 shadow-neutral-400 hover:shadow-inner hover:shadow-neutral-500/80 w-fit rounded-lg p-2"
             href="/mypics"
           >
             My fotos
           </a>
           <a
-            class="text-center shadow-md m-2 border focus:shadow-inner focus:shadow-neutral-600 border-neutral-400/50 shadow-neutral-400 hover:shadow-inner hover:shadow-neutral-500/80 w-fit rounded-lg p-2"
+            class="text-center shadow-md border focus:shadow-inner focus:shadow-neutral-600 border-neutral-400/50 shadow-neutral-400 hover:shadow-inner hover:shadow-neutral-500/80 w-fit rounded-lg p-2"
             href="/logout"
           >
             Logout
@@ -44,13 +44,13 @@ if (!Astro.cookies.has("token")) {
       ) : (
         <div>
           <a
-            class="text-center shadow-md m-2 border focus:shadow-inner focus:shadow-neutral-600 border-neutral-400/50 shadow-neutral-400 hover:shadow-inner hover:shadow-neutral-500/80 w-fit rounded-lg p-2"
+            class="text-center shadow-md border focus:shadow-inner focus:shadow-neutral-600 border-neutral-400/50 shadow-neutral-400 hover:shadow-inner hover:shadow-neutral-500/80 w-fit rounded-lg p-2"
             href="/"
           >
             Inici
           </a>
           <a
-            class="text-center shadow-md m-2 border focus:shadow-inner focus:shadow-neutral-600 border-neutral-400/50 shadow-neutral-400 hover:shadow-inner hover:shadow-neutral-500/80 w-fit rounded-lg p-2"
+            class="text-center shadow-md border focus:shadow-inner focus:shadow-neutral-600 border-neutral-400/50 shadow-neutral-400 hover:shadow-inner hover:shadow-neutral-500/80 w-fit rounded-lg p-2"
             href="/logout"
           >
             Logout
