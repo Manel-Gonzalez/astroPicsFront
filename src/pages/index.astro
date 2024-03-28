@@ -8,7 +8,7 @@ const images = await x.json();
 ---
 
 <Layout title="CERDOS ASTROLOGOS">
-  <div class="p-4 flex flex-col w-full justify-center gap-4">
+  <div class="p-12 flex flex-col w-full justify-center gap-4">
     {images.map((i) => <Picture pic={i} />)}
   </div>
 </Layout>
