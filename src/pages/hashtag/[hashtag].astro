@@ -1,0 +1,31 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import config from "../../config";
+import Picture from "../../components/Picture.astro";
+
+const {hashtag} = Astro.params;
+
+if (!Astro.cookies.has("token")) {
+  return Astro.redirect("/login");
+}
+
+let token = Astro.cookies.get("token").value;
+
+const options = {
+  headers: {Authorization: `Bearer ${token}`},
+};
+/* /api/images/hashtag/:hashtag */
+let images = [];
+try {
+  let i = await fetch(`${config.API_URL}/images/hashtag/${hashtag}`, options);
+  images = await i.json();
+} catch (err) {
+  throw err;
+}
+---
+
+<Layout title={"images from hashtag " + hashtag}>
+  <div class="grid">
+    {images.map((e) => <Picture pic={e} />)}
+  </div>
+</Layout>

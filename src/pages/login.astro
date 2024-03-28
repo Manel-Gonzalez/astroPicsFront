@@ -1,0 +1,80 @@
+---
+import Layout from "../layouts/Layout.astro";
+import config from "../config";
+
+let err;
+
+if (Astro.request.method === "POST") {
+  const data = await Astro.request.formData();
+  const name = data.get("nom");
+  const password = data.get("password");
+
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({name, password}),
+  };
+  let resposta = await fetch(`${config.API_URL}/login`, options);
+  resposta = await resposta.json();
+
+  if (resposta.error) {
+    err = resposta.error;
+    return Astro.redirect("/login_error");
+  } else {
+    const cookieOptions = {httpOnly: false, maxAge: 7200000};
+    Astro.cookies.set("token", resposta.token, cookieOptions);
+    return Astro.redirect("/");
+  }
+}
+---
+
+<Layout title="Inicio de sesion">
+  <div
+    class="w-2/3 md:w-1/2 flex flex-col mx-auto content-center p-4 md:p-8 my-8 bg-white rounded-md shadow-md shadow-neutral-400"
+  >
+    <form method="POST" class="m-auto flex flex-col mt-4 w-100">
+      <div class="">
+        <div class="">
+          <label
+            class="block text-gray-500 mb-1 md:mb-0 pr-4"
+            for="inline-full-name"
+          >
+            Nom
+          </label>
+          <input
+            class="appearance-none rounded w-full py-2 px-4 text-gray-700 shadow-neutral-400/30 focus:outline-none shadow-inner focus:shadow-neutral-600/60"
+            name="nom"
+            type="text"
+          />
+        </div>
+        <div class="my-12">
+          <label
+            class="block text-gray-500 mb-1 md:mb-0 pr-4"
+            for="inline-full-name"
+          >
+            Password
+          </label>
+          <input
+            class="appearance-none rounded w-full py-2 px-4 text-gray-700 shadow-neutral-400/30 focus:outline-none shadow-inner focus:shadow-neutral-600/60"
+            name="password"
+            type="text"
+          />
+        </div>
+      </div>
+
+      <div class="flex flex-row">
+        <button
+          class="shadow-md shadow-neutral-500 focus:shadow-inner hover:shadow-inner hover:shadow-neutral-400/60 focus:shadow-neutral-600 text-neutral-700 font-bold py-2 px-4 rounded mx-auto"
+        >
+          Login
+        </button>
+        <a
+          class="shadow-md shadow-neutral-500 focus:shadow-inner hover:shadow-inner hover:shadow-neutral-400/60 focus:shadow-neutral-600 text-neutral-700 font-bold py-2 px-4 rounded mx-auto"
+          href="/register">To Register</a
+        >
+      </div>
+    </form>
+  </div>
+</Layout>

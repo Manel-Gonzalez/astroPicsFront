@@ -1,0 +1,33 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import config from "../../config";
+import Picture from "../../components/Picture.astro";
+
+const {user} = Astro.params;
+console.log(user);
+
+if (!Astro.cookies.has("token")) {
+  return Astro.redirect("/login");
+}
+
+let token = Astro.cookies.get("token").value;
+
+const options = {
+  headers: {Authorization: `Bearer ${token}`},
+};
+
+let images = [];
+try {
+  let x = await fetch(`${config.API_URL}/images/user/${user}`, options);
+  images = await x.json();
+} catch (err) {
+  throw err;
+}
+console.log(images);
+---
+
+<Layout title={"images from user " + user}>
+  <div class="grid">
+    {images.map((e) => <Picture pic={e} />)}
+  </div>
+</Layout>

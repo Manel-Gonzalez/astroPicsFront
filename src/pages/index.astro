@@ -1,0 +1,14 @@
+---
+import Layout from "../layouts/Layout.astro";
+import config from "../config";
+import Picture from "../components/Picture.astro";
+
+let x = await fetch(`${config.API_URL}/allimages`);
+const images = await x.json();
+---
+
+<Layout title="CERDOS ASTROLOGOS">
+  <div class="p-4 flex flex-col w-full justify-center gap-4">
+    {images.map((i) => <Picture pic={i} />)}
+  </div>
+</Layout>

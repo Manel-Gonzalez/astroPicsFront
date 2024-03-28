@@ -1,0 +1,62 @@
+---
+const {title} = Astro.props;
+let cookie;
+if (!Astro.cookies.has("token")) {
+  cookie = false;
+} else {
+  cookie = true;
+}
+---
+
+<div>
+  <div
+    class="flex flex-row justify-between w-full bg-white p-4 shadow-md focus:shadow-neutral-600 shadow-neutral-400"
+  >
+    <h1>{title}</h1>
+    {
+      cookie ? (
+        <div class="">
+          <a
+            class="text-center shadow-md m-2 border focus:shadow-inner focus:shadow-neutral-600 border-neutral-400/50 shadow-neutral-400 hover:shadow-inner hover:shadow-neutral-500/80 w-fit rounded-lg p-2"
+            href="/"
+          >
+            Inici
+          </a>
+          <a
+            class="text-center shadow-md m-2 border focus:shadow-inner focus:shadow-neutral-600 border-neutral-400/50 shadow-neutral-400 hover:shadow-inner hover:shadow-neutral-500/80 w-fit rounded-lg p-2"
+            href="/upload"
+          >
+            Afegir foto
+          </a>
+          <a
+            class="text-center shadow-md m-2 border focus:shadow-inner focus:shadow-neutral-600 border-neutral-400/50 shadow-neutral-400 hover:shadow-inner hover:shadow-neutral-500/80 w-fit rounded-lg p-2"
+            href="/mypics"
+          >
+            My fotos
+          </a>
+          <a
+            class="text-center shadow-md m-2 border focus:shadow-inner focus:shadow-neutral-600 border-neutral-400/50 shadow-neutral-400 hover:shadow-inner hover:shadow-neutral-500/80 w-fit rounded-lg p-2"
+            href="/logout"
+          >
+            Logout
+          </a>
+        </div>
+      ) : (
+        <div>
+          <a
+            class="text-center shadow-md m-2 border focus:shadow-inner focus:shadow-neutral-600 border-neutral-400/50 shadow-neutral-400 hover:shadow-inner hover:shadow-neutral-500/80 w-fit rounded-lg p-2"
+            href="/"
+          >
+            Inici
+          </a>
+          <a
+            class="text-center shadow-md m-2 border focus:shadow-inner focus:shadow-neutral-600 border-neutral-400/50 shadow-neutral-400 hover:shadow-inner hover:shadow-neutral-500/80 w-fit rounded-lg p-2"
+            href="/logout"
+          >
+            Logout
+          </a>
+        </div>
+      )
+    }
+  </div>
+</div>
